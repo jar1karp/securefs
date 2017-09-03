@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 project(securefs)
+set (SECUREFS_VERSION "0.11.1")
+
 if (POLICY CMP0048)
   cmake_policy(SET CMP0048 NEW)
 endif()
@@ -131,3 +133,16 @@ add_test(NAME simple_test COMMAND python3 ${PROJECT_SOURCE_DIR}/test/simple_test
 endif()
 
 install(TARGETS securefs DESTINATION bin)
+
+set(CPACK_GENERATOR RPM DEB TGZ)
+set(CPACK_PACKAGE_NAME "securefs")
+set(CPACK_PACKAGE_VERSION ${SECUREFS_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "securefs is a filesystem in userspace (FUSE) with transparent encryption (when writing) and decryption (when reading).")
+set(CPACK_PACKAGE_DESCRIPTION "securefs mounts a regular directory onto a mount point. The mount point appears as a regular filesystem, where one can read/write/create files, directories and symbolic links. The underlying directory will be automatically updated to contain the encrypted and authenticated contents.")
+set(CPACK_PACKAGE_CONTACT "Siyaun Ren <netheril96@gmail.com>")
+set(CPACK_PACKAGE_VENDOR "Siyaun Ren")
+set(CPACK_STRIP_FILES ON)
+set(CPACK_PACKAGE_EXECUTABLES "securefs" "securefs")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_DESCRIPTION ${CPACK_PACKAGE_DESCRIPTION})
+include(CPack)

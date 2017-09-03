@@ -65,6 +65,11 @@ Make sure you load the fuse kernel module before using securefs:
 kldload fuse
 sysrc -f /boot/loader.conf fuse_load="YES"  # Load fuse automatically at boot
 ```
+Use `cmake` to generate build files then build it. It requires a sufficiently new compiler that supports enough of C++11 (such as g++ 4.8, clang 3.4 or VC++ 2015).
+
+### Build .deb and .rpm packages
+
+Use `cmake` to generate build files and then build packages by running `make package`.
 
 ## Basic usage
 

@@ -6,6 +6,8 @@
 #include "myutils.h"
 #include "operations.h"
 #include "platform.h"
+#include "streams.h"
+#include "securefs_config.h"
 
 #include <cryptopp/cpu.h>
 #include <cryptopp/hmac.h>
@@ -1227,6 +1229,9 @@ static inline const char* true_or_false(bool v) { return v ? "true" : "false"; }
 
 class VersionCommand : public CommandBase
 {
+private:
+    const char* version_string = SECUREFS_VERSION;
+
 public:
     void parse_cmdline(int argc, const char* const* argv) override
     {
